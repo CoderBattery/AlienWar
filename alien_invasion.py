@@ -1,7 +1,8 @@
 import sys
 
 import pygame
-from pygame.event import event_name
+
+import time
 
 
 class AlienInvasion:
@@ -10,6 +11,9 @@ class AlienInvasion:
     def __init__(self):
         """初始化游戏并创建游戏资源"""
         pygame.init()
+
+        self.clock = pygame.time.Clock()
+
         # 设置屏幕宽高
         self.screen = pygame.display.set_mode((1200, 800))
         # 设置屏幕标题
@@ -27,9 +31,12 @@ class AlienInvasion:
                     # 不写的话无法点击X关闭小窗
                     sys.exit()
 
-
             # 让最近绘制的屏幕可见
+            # 不加clock flip这个方法的刷新频率有点高，需要控制下
             pygame.display.flip()
+            # 游戏的帧率，一秒60次
+            self.clock.tick(60)
+            print(time.time())
 
 
 if __name__ == '__main__':
