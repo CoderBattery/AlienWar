@@ -5,6 +5,7 @@ import pygame
 import time
 
 from settings import Settings
+from ship import Ship
 
 
 class AlienInvasion:
@@ -27,24 +28,27 @@ class AlienInvasion:
         # 设置背景色
         self.screen.fill(self.settings.bg_color)
 
+        self.ship = Ship(self)
+
     def run_game(self):
         """开始游戏的主循环"""
         while True:
 
             # pygame.event.get()返回一个列表，包含上次调用后发生的所有事件
             for key_event in pygame.event.get():
-                print(key_event.type)
                 if key_event.type == pygame.QUIT:
                     # 点击小窗的X按钮，小窗直接关闭,
                     # 不写的话无法点击X关闭小窗
                     sys.exit()
+
+            # 绘制飞船
+            self.ship.blitme()
 
             # 让最近绘制的屏幕可见
             # 不加clock flip这个方法的刷新频率有点高，需要控制下
             pygame.display.flip()
             # 游戏的帧率，一秒60次
             self.clock.tick(60)
-            print(time.time())
 
 
 if __name__ == '__main__':
