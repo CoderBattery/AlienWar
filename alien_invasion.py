@@ -4,6 +4,7 @@ import pygame
 
 import time
 
+from alien import Alien
 from bullet import Bullet
 from settings import Settings
 from ship import Ship
@@ -36,6 +37,10 @@ class AlienInvasion:
 
         # 子弹编组
         self.bullets = pygame.sprite.Group()
+
+        # 创建外星人舰队
+        self.aliens = pygame.sprite.Group()
+        self._create_fleet()
 
     def run_game(self):
         """开始游戏的主循环"""
@@ -95,6 +100,11 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+    def _create_fleet(self):
+        """创建一个外星人舰队"""
+        alien = Alien(self)
+        self.aliens.add(alien)
+
     def _update_screen(self):
         """更新屏幕上的图像"""
         # 设置背景色,必须每次要刷新，不然子弹变成一条线
@@ -104,6 +114,9 @@ class AlienInvasion:
         # 绘制子弹
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+
+        self.aliens.draw(self.screen)
+
         # 让最近绘制的屏幕可见
         pygame.display.flip()
 
