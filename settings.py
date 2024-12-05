@@ -7,4 +7,4 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (230, 230, 230)
         # 飞船速度，每次移动的像素值
-        self.ship_speed = 1.5
+        self.ship_speed = 3
