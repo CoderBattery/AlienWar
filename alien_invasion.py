@@ -43,8 +43,13 @@ class AlienInvasion:
             self._check_event()
             self.ship.update()
             self.bullets.update()
-            self._update_screen()
 
+            # 删除出界的子弹
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+
+            self._update_screen()
             # 不加clock flip这个方法的刷新频率有点高，需要控制下
             # 游戏的帧率，一秒60次
             self.clock.tick(60)
@@ -82,8 +87,9 @@ class AlienInvasion:
             self.ship.moving_left = False
 
     def _fire_bullet(self):
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullet_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 
     def _update_screen(self):
         """更新屏幕上的图像"""
