@@ -42,12 +42,7 @@ class AlienInvasion:
         while True:
             self._check_event()
             self.ship.update()
-            self.bullets.update()
-
-            # 删除出界的子弹
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
+            self.update_bullets()
 
             self._update_screen()
             # 不加clock flip这个方法的刷新频率有点高，需要控制下
@@ -87,9 +82,18 @@ class AlienInvasion:
             self.ship.moving_left = False
 
     def _fire_bullet(self):
+        """发射子弹，加入编组"""
         if len(self.bullets) < self.settings.bullet_allowed:
-            new_bullet = Bullet(self)
-            self.bullets.add(new_bullet)
+            bullet = Bullet(self)
+            self.bullets.add(bullet)
+
+    def update_bullets(self):
+        """更新子弹位置并删除已消失的子弹"""
+        self.bullets.update()
+        # 删除出界的子弹
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
     def _update_screen(self):
         """更新屏幕上的图像"""
