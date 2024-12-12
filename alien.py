@@ -19,8 +19,11 @@ class Alien(Sprite):
 
         self.x = float(self.rect.x)
 
-
-
     def update(self, *args, **kwargs):
-        self.x += self.settings.alien_speed
+        self.x += self.settings.alien_speed * self.settings.alien_direct
         self.rect.x = self.x
+
+    def check_edges(self):
+        screen_rect = self.screen.get_rect()
+        return (self.rect.left <= 0) or (self.rect.right >= screen_rect.right)
+

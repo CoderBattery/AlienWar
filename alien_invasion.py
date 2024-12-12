@@ -102,7 +102,19 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
 
     def update_aliens(self):
+        self.check_fleet_edges()
         self.aliens.update()
+
+    def check_fleet_edges(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self.change_fleet_direction()
+                break
+
+    def change_fleet_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.alien_speed_y
+        self.settings.alien_direct *= -1
 
     def _create_fleet(self):
         """创建一个外星人舰队"""
