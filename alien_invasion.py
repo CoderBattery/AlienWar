@@ -100,10 +100,14 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+        self.check_bullet_alien_collide()
+
+    def check_bullet_alien_collide(self):
         # 当子弹和外星人精灵触碰后，两者都消失
         # 第一个True 表示触碰后子弹是否消失消失
         # 第二个True 表示触碰后外星人是否消失
-        collision = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
+        collision = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
         # groupcollide后 aliens中外星人会消失
         if not self.aliens:
