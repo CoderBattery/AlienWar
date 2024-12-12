@@ -35,3 +35,7 @@ class Ship:
             self.x -= self.settings.ship_speed
         # 根据浮点数更新rect坐标
         self.rect.x = self.x
+
+    def center_ship(self):
+        self.rect.midbottom = self.screen.get_rect().midbottom
+        self.x = float(self.rect.x)

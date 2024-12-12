@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 
 import pygame
 
@@ -125,6 +126,19 @@ class AlienInvasion:
         # 未碰撞则返回none
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             print("ship hit!!!")
+            self.ship_hit()
+
+    def ship_hit(self):
+        self.stats.ship_left -= 1
+
+        # 清空子弹和外星人
+        self.bullets.empty()
+        self.aliens.empty()
+
+        self._create_fleet()
+        self.ship.center_ship()
+
+        sleep(5)
 
     def check_fleet_edges(self):
         for alien in self.aliens.sprites():

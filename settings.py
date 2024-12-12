@@ -21,6 +21,6 @@ class Settings:
         # 外星人左右移动的速度
         self.alien_speed = 1.0
         # 外星人向下移动的速度
-        self.alien_speed_y = 10
+        self.alien_speed_y = 20
         # 1表示向右移动 -1表示向左移动
         self.alien_direct = 1
