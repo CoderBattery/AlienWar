@@ -48,6 +48,7 @@ class AlienInvasion:
             self._check_event()
             self.ship.update()
             self.update_bullets()
+            self.update_aliens()
 
             self._update_screen()
             # 不加clock flip这个方法的刷新频率有点高，需要控制下
@@ -99,6 +100,9 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+    def update_aliens(self):
+        self.aliens.update()
 
     def _create_fleet(self):
         """创建一个外星人舰队"""

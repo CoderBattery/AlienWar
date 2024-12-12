@@ -8,6 +8,7 @@ class Alien(Sprite):
         """初始化外星人的类"""
         super().__init__()
         self.screen = alien_invasion.screen
+        self.settings = alien_invasion.settings
 
         self.image = pygame.image.load('images/alien.bmp')
         self.rect = self.image.get_rect()
@@ -17,3 +18,9 @@ class Alien(Sprite):
         self.rect.y = self.rect.height
 
         self.x = float(self.rect.x)
+
+
+
+    def update(self, *args, **kwargs):
+        self.x += self.settings.alien_speed
+        self.rect.x = self.x
