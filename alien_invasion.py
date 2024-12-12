@@ -128,6 +128,14 @@ class AlienInvasion:
             print("ship hit!!!")
             self.ship_hit()
 
+        self.check_aliens_bottom()
+
+    def check_aliens_bottom(self):
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= self.settings.screen_height:
+                self.ship_hit()
+                break
+
     def ship_hit(self):
         self.stats.ship_left -= 1
 
