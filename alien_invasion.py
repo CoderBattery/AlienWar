@@ -46,13 +46,16 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
 
+        self.game_active = True
+
     def run_game(self):
         """开始游戏的主循环"""
         while True:
             self._check_event()
-            self.ship.update()
-            self.update_bullets()
-            self.update_aliens()
+            if self.game_active:
+                self.ship.update()
+                self.update_bullets()
+                self.update_aliens()
 
             self._update_screen()
             # 不加clock flip这个方法的刷新频率有点高，需要控制下
@@ -137,16 +140,19 @@ class AlienInvasion:
                 break
 
     def ship_hit(self):
-        self.stats.ship_left -= 1
+        if self.stats.ship_left > 0:
+            self.stats.ship_left -= 1
 
-        # 清空子弹和外星人
-        self.bullets.empty()
-        self.aliens.empty()
+            # 清空子弹和外星人
+            self.bullets.empty()
+            self.aliens.empty()
 
-        self._create_fleet()
-        self.ship.center_ship()
+            self._create_fleet()
+            self.ship.center_ship()
 
-        sleep(5)
+            sleep(5)
+        else:
+            self.game_active = False
 
     def check_fleet_edges(self):
         for alien in self.aliens.sprites():
