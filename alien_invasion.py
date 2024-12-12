@@ -6,6 +6,7 @@ import time
 
 from alien import Alien
 from bullet import Bullet
+from game_stats import GameStats
 from settings import Settings
 from ship import Ship
 
@@ -32,6 +33,8 @@ class AlienInvasion:
 
         # 设置屏幕标题
         pygame.display.set_caption("Alien Invasion")
+
+        self.stats =GameStats(self)
 
         self.ship = Ship(self)
 

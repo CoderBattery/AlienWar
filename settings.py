@@ -8,6 +8,8 @@ class Settings:
         self.bg_color = (230, 230, 230)
         # 飞船速度，每次移动的像素值
         self.ship_speed = 3
+        # 飞船数量
+        self.ship_limit = 3
 
         # 子弹相关设置
         self.bullet_speed = 5
