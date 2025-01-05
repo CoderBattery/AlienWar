@@ -8,3 +8,5 @@ class GameStats:
     def reset_stats(self):
         self.ship_left = self.settings.ship_limit
         self.score = 0
+        # 显示游戏等级
+        self.level = 1
