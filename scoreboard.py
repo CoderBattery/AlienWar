@@ -17,7 +17,13 @@ class Scoreboard:
 
     def prep_score(self):
         """得分渲染为图像"""
-        score_str = str(self.stats.score)
+
+        # round参数1：
+        # round参数2：指定为负数，会将数字舍入到最近的10的倍数
+        round_score = round(self.stats.score, -1)
+        # ;,  表示在合适的位置插入逗号 1,000,000
+        score_str = f"{round_score:,}"
+
         self.score_image = self.font.render(
             score_str,
             True,
