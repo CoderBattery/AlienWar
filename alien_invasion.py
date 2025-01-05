@@ -86,7 +86,17 @@ class AlienInvasion:
 
         # 检查鼠标点击位置是否在Play按钮上
         if self.play_button.rect.collidepoint(mouse_pos):
+            # 重置飞船的三条命
+            self.stats.reset_stats()
             self.game_active = True
+
+            # 清空外星人列表和子弹
+            self.bullets.empty()
+            self.aliens.empty()
+
+            # 创建新的外星人列表和将飞船放在屏幕底部
+            self._create_fleet()
+            self.ship.center_ship()
 
     def _check_keydown_events(self, event):
         """响应down"""
