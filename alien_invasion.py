@@ -86,6 +86,10 @@ class AlienInvasion:
 
         # 检查鼠标点击位置是否在Play按钮上
         if not self.game_active and self.play_button.rect.collidepoint(mouse_pos):
+
+            # 还原游戏设置
+            self.settings.initialize_dynamic_settings()
+
             # 重置飞船的三条命
             self.stats.reset_stats()
             self.game_active = True
