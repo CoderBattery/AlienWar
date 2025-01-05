@@ -146,6 +146,8 @@ class AlienInvasion:
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
+            # 外星人全部消失后增加速度
+            self.settings.increase_speed()
 
     def update_aliens(self):
         self.check_fleet_edges()
