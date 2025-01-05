@@ -10,6 +10,7 @@ from bullet import Bullet
 from game_stats import GameStats
 from settings import Settings
 from ship import Ship
+from button import Button
 
 
 class AlienInvasion:
@@ -35,7 +36,7 @@ class AlienInvasion:
         # 设置屏幕标题
         pygame.display.set_caption("Alien Invasion")
 
-        self.stats =GameStats(self)
+        self.stats = GameStats(self)
 
         self.ship = Ship(self)
 
@@ -46,7 +47,9 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
 
-        self.game_active = True
+        self.game_active = False
+
+        self.play_button = Button(self, "Play")
 
     def run_game(self):
         """开始游戏的主循环"""
@@ -200,6 +203,9 @@ class AlienInvasion:
             bullet.draw_bullet()
 
         self.aliens.draw(self.screen)
+
+        if not self.game_active:
+            self.play_button.draw_button()
 
         # 让最近绘制的屏幕可见
         pygame.display.flip()
