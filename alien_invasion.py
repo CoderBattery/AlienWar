@@ -157,6 +157,7 @@ class AlienInvasion:
             for aliens in collision.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.scoreboard.prep_score()
+            self.scoreboard.check_high_score()
 
         # groupcollide后 aliens中外星人会消失
         if not self.aliens:
