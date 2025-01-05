@@ -95,6 +95,7 @@ class AlienInvasion:
             # 重置飞船的三条命
             self.stats.reset_stats()
             self.scoreboard.prep_score()
+            self.scoreboard.pre_level()
             self.game_active = True
 
             # 清空外星人列表和子弹
@@ -165,6 +166,9 @@ class AlienInvasion:
             self._create_fleet()
             # 外星人全部消失后增加速度
             self.settings.increase_speed()
+
+            self.stats.level += 1
+            self.scoreboard.pre_level()
 
     def update_aliens(self):
         self.check_fleet_edges()
