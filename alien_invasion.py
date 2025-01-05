@@ -150,7 +150,12 @@ class AlienInvasion:
         collision = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
         if collision:
-            self.stats.score += self.settings.alien_points
+            # 这里只增加了一个外星人的积分，如果一次刷新过程中杀死了两只，这里就有BUG
+            # self.stats.score += self.settings.alien_points
+
+            # 每颗子弹击中的外星人
+            for aliens in collision.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
             self.scoreboard.prep_score()
 
         # groupcollide后 aliens中外星人会消失
