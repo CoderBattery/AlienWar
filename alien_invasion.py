@@ -94,6 +94,7 @@ class AlienInvasion:
 
             # 重置飞船的三条命
             self.stats.reset_stats()
+            self.scoreboard.prep_score()
             self.game_active = True
 
             # 清空外星人列表和子弹
@@ -147,6 +148,10 @@ class AlienInvasion:
         # 第一个True 表示触碰后子弹是否消失消失
         # 第二个True 表示触碰后外星人是否消失
         collision = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+        if collision:
+            self.stats.score += self.settings.alien_points
+            self.scoreboard.prep_score()
 
         # groupcollide后 aliens中外星人会消失
         if not self.aliens:

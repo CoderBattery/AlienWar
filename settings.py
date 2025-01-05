@@ -34,6 +34,9 @@ class Settings:
         # 外星人左右移动的速度
         self.alien_speed = 1.0
 
+        # 杀死一个外星人50分
+        self.alien_points = 50
+
     def increase_speed(self):
         """提高速度"""
         self.ship_speed *= self.speedup_scale
