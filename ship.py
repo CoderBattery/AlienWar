@@ -1,12 +1,15 @@
 import pygame.image
 
+from pygame.sprite import Sprite
 
-class Ship:
+
+class Ship(Sprite):
     """管理飞船的类"""
 
     def __init__(self, alien_invasion):
         """初始化飞船并设置初始位置"""
 
+        super().__init__()
         self.screen = alien_invasion.screen
         self.settings = alien_invasion.settings
 
